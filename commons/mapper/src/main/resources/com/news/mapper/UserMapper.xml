@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.news.mapper.UserMapper">
+  <resultMap id="UserBaseResultMap" type="com.news.pojo.User">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="gender" jdbcType="INTEGER" property="gender" />
+    <result column="birthday" jdbcType="DATE" property="birthday" />
+    <result column="accountNumber" jdbcType="VARCHAR" property="accountNumber" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="vip" jdbcType="INTEGER" property="vip" />
+  </resultMap>
+  <sql id="User_Base_Column_List">
+    id, name, gender, birthday, accountNumber, password, email, vip
+  </sql>
+  <select id="emailExist" resultType="java.lang.Integer">
+    select count(email) from User where email=#{email}
+  </select>
+  <insert id="regsitry">
+    insert User values(null,#{name},#{gender},#{birthday},#{accountNumber},#{password},#{email},0)
+  </insert>
+</mapper>
